@@ -12,7 +12,7 @@ Run script:
 python kanji_cards.py <path_to_kanji_file> <path_to_output_file> [-d file_name]
 ```
 
-> **path_to_kanji_file** is the relative path to a text file containing your kanji list. The script will ask you to specify how the kanji are separated. Personally, I used [nihongo-pro.com](https://www.nihongo-pro.com/kanji-pal/list/jlpt).
+> **path_to_kanji_file** is the relative path to a text file containing your kanji list. The script will ask you to specify how the kanji are separated. Personally, I copied kanji from [nihongo-pro.com](https://www.nihongo-pro.com/kanji-pal/list/jlpt) into a text file.
 
 > **path_to_output_file** is the relative path (and name) of the file that will be created to contain your cards.
 
