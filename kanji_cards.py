@@ -13,7 +13,6 @@ output_file_loc = args.output_file
 current_deck_loc = args.d
 kanji = []
 deck = []
-start_time = time.time()
 
 try:
     with open(kanji_file_loc, 'r', encoding='utf-8') as kanji_file:
@@ -50,6 +49,7 @@ try:
         if output_file_loc.endswith(".csv") == False:
             output_file_loc = f'{output_file_loc}.csv'
         with open(output_file_loc, mode='w', newline='', encoding='utf-8') as output_file:
+            start_time = time.time()
             write = csv.DictWriter(output_file, fieldnames=field_headers)
             # write.writeheader()  # Not needed in Anki
             for index, kanji_str in enumerate(kanji):
