@@ -18,5 +18,14 @@ python kanji_cards.py <path_to_kanji_file> <path_to_output_file> [-d file_name]
 
 > **-d file_name** (optional) is the relative path to your current deck, exported (in Anki Notes format). This is only used in a comparison operation to avoid creating duplicate cards.
 
+You can create a `.env` file to configure default headers:
+```
+HEADERS=""
+TERM=""
+DEFINITION=""
+```
+
+> **HEADERS** is your comma-separated list of headers. **TERM** is the header corresponding to the term. **DEFINITION** is the header corresponding to the definition.
+
 ## Acknowledgements
 This script makes use of the [jisho-api](https://github.com/pedroallenrevez/jisho-api) project, which scrapes [jisho.org](https://jisho.org) for data.

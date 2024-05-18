@@ -2,6 +2,7 @@ import argparse, csv, sys, time
 # import requests
 # from bs4 import BeautifulSoup
 from jisho_api.kanji import Kanji
+from decouple import config
 
 parser = argparse.ArgumentParser()
 parser.add_argument('kanji_file', type=str, help='.txt file with the Kanji to create cards for')
@@ -16,17 +17,31 @@ deck = []
 
 try:
     with open(kanji_file_loc, 'r', encoding='utf-8') as kanji_file:
-        field_headers = input('Enter your deck\'s card fields in order, separated only by commas (leave blank for the Anki default "Front,Back"): ') or 'Front,Back'
+        try:
+            default_headers = config('HEADERS')
+        except:
+            default_headers = "Front,Back"
+        field_headers = input(f'Type your card field headers in order, separated only by commas (leave blank and press Enter for "{default_headers}"): ') or default_headers
         field_headers = field_headers.lower().split(',')
         data_map = {
             'front': ['front',],
             'back': ['back',],
         }
         if 'front' not in field_headers:
-            data_map['front'] = [ input('Specify the name of which header represents the term: ').lower(), ]
+            try:
+                front_header = config('TERM')
+                front_header = input(f'Specify which header represents the term (leave blank and press Enter for "{front_header}"): ').lower() or front_header.lower()
+            except:
+                front_header = input('Specify which header represents the term: ').lower()
+            data_map['front'] = [ front_header, ]
         if 'back' not in field_headers:
-            data_map['back'] = [ input('Specify the name of which header represents the definition: ').lower(), ]
-        delim = input(f'Enter the Kanji delimiter for "{kanji_file_loc.split('/')[-1]}" (leave blank for space): ') or ' '
+            try:
+                back_header = config('DEFINITION')
+                back_header = input(f'Specify which header represents the definition (leave blank and press Enter for "{back_header}"): ').lower() or back_header.lower()
+            except:
+                back_header = input('Specify which header represents the definition: ').lower()
+            data_map['back'] = [ back_header, ]
+        delim = input(f'Enter the Kanji delimiter for "{kanji_file_loc.split('/')[-1]}" (leave blank and press Enter for space): ') or ' '
         kanji = kanji_file.read().split(delim)
         
         # Optionally read current deck
