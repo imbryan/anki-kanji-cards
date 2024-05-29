@@ -75,6 +75,7 @@ try:
                 # soup = BeautifulSoup(r2, "html.parser")
                 # jlpt = soup.find_all("div", {"class": "kanji_stats"})[0].find_all("div", {"class": "jlpt"})[0].find_all("strong")[0].text
                 # NOTE 2 ultimately decided against the second request, since users can tag cards on the Anki import interface, it's not worth doubling the # of requests
+                # TODO include JLPT tag as an option
                 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
                 # print(f'{0}:{kanji[0]},{r.data.radical.basis},{r.data.main_meanings},{r.data.main_readings},{jlpt}')
                 row_data = {}
