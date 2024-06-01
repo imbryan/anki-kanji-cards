@@ -18,6 +18,8 @@ python kanji_cards.py <path_to_kanji_file> <path_to_output_file> [-d file_name]
 
 > **-d file_name** (optional) is the relative path to your current deck, exported (in Anki Notes format). This is only used in a comparison operation to avoid creating duplicate cards.
 
+> **--jlpt** (optional) gets the JLPT grade and puts it in the Anki tags field for each kanji. WARNING: this option doubles the amount of requests you make due to a bug in a dependency (see "NOTE ON JLPT OPTION" in code).
+
 You can create a `.env` file to configure default headers:
 ```
 HEADERS=""
