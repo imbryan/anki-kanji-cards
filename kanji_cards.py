@@ -60,7 +60,7 @@ try:
                     end_time1 = time.time()
                     print(f'Skipping {kanji_len_before - len(kanji)} duplicate Kanji...')
             except (FileNotFoundError, IOError) as e:
-                print(f'Error: {e}')
+                print(f'ERROR: {e}')
                 sys.exit()
                 
         print(f'Making {len(kanji)} cards...')
@@ -80,7 +80,11 @@ try:
                 if jlpt_tag:
                     r2 = requests.get(f'https://jisho.org/search/{kanji_str}%23kanji').content
                     soup = BeautifulSoup(r2, "html.parser")
-                    jlpt = soup.find_all("div", {"class": "kanji_stats"})[0].find_all("div", {"class": "jlpt"})[0].find_all("strong")[0].text
+                    try:
+                        jlpt = soup.find_all("div", {"class": "kanji_stats"})[0].find_all("div", {"class": "jlpt"})[0].find_all("strong")[0].text
+                    except:
+                        jlpt = ''
+                        print('NOTICE: No JLPT grade found; kanji is likely Hyōgai or Jinmeiyō.')
                 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
                 row_data = {}
                 if field_headers == ['front','back']:
@@ -114,5 +118,5 @@ try:
             time_elapsed = time_elapsed + (end_time1 - start_time1)
         print(f'Done. Took {time_elapsed:.2f} seconds.')
 except (FileNotFoundError, IOError) as e:
-    print(f'Error: {e}')
+    print(f'ERROR: {e}')
 
