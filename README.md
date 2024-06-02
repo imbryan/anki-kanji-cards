@@ -1,5 +1,5 @@
 # Anki Kanji Cards
-This is a script that generates Anki cards for a given list of kanji.
+This is a CLI script that generates Anki cards for a given list of kanji.
 
 ## Usage
 Install dependencies:
@@ -9,7 +9,7 @@ pip install -r requirements.txt
 
 Run script:
 ```
-python kanji_cards.py <path_to_kanji_file> <path_to_output_file> [-d file_name]
+python kanji_cards.py <path_to_kanji_file> <path_to_output_file> [-d file_name] [--jlpt]
 ```
 
 > **path_to_kanji_file** is the relative path to a text file containing your kanji list. The script will ask you to specify how the kanji are separated. Personally, I copied kanji from [nihongo-pro.com](https://www.nihongo-pro.com/kanji-pal/list/jlpt) into a text file.
